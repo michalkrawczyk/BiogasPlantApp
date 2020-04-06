@@ -19,6 +19,8 @@ namespace database{
                               const QString &password,
                               const unsigned short &port);
 
+    bool isConnEstablished(DbManager *db_ptr);
+
 }//namespace database
 
 

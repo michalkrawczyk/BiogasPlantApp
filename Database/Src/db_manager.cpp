@@ -1,6 +1,5 @@
 #include "Database/Inc/db_manager.h"
 
-
 DbManager::DbManager():
     m_last_error(""),
     m_available(false)
@@ -23,7 +22,7 @@ QSqlDatabase DbManager::getDatabase() const
 {
     if (!m_available)
     {
-        throw std::runtime_error("Database not initialized");
+        throw std::runtime_error("Database not initialized or could't be opened");
     }
 
     return QSqlDatabase::database(m_db_name);

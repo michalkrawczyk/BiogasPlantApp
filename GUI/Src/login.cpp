@@ -10,7 +10,7 @@
 extern std::unique_ptr<Menu> main_menu;
 
 
-Login::Login(QWidget *parent, DbManager *db_ptr) :
+Login::Login(DbSQL db_ptr, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login),
     m_db_ptr(db_ptr)
@@ -62,14 +62,21 @@ void Login::on_pushButton_sign_in_clicked()
     {
         this->hide();
 
+        main_menu = std::unique_ptr<Menu>(new Menu(ui->lineEdit_user->text().toUInt(),
+                                                   m_db_ptr) );
         main_menu->show();
     }
     else
+    {
         // Primary key of database do not allow to record same UserID
         // Works also when there's no user with that login or password
         QMessageBox::warning(nullptr,
                              "Failed To Log In",
                              "Invalid username or password - Please Try Again");
+        ui->lineEdit_password->clear();
+    }
+
+
 }
 
 

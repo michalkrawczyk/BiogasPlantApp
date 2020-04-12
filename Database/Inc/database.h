@@ -6,7 +6,7 @@
 
 #include "Database/Inc/db_manager.h"
 
-typedef std::unique_ptr<DbManager> DbSQL; //consider shared_ptr
+typedef std::shared_ptr<DbManager> DbSQL;
 
 
 namespace database{
@@ -19,7 +19,7 @@ namespace database{
                               const QString &password,
                               const unsigned short &port);
 
-    bool isConnEstablished(DbManager *db_ptr);
+    bool isConnEstablished(DbSQL &db_ptr);
 
 }//namespace database
 

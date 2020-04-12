@@ -52,9 +52,9 @@ namespace database {
      * @return true if connection is open or reopened
      * if unavailable - false and throws window with critical message
      */
-    bool isConnEstablished(DbManager *db_ptr)
+    bool isConnEstablished(DbSQL &db_ptr)
     {
-        if (db_ptr->isDatabaseAvailable())
+        if (db_ptr && db_ptr->isDatabaseAvailable())
         {
             if(!db_ptr->getDatabase().isOpen()) //sometimes connection might be lost
             {

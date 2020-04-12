@@ -7,8 +7,7 @@
 #include <QApplication>
 #include <memory>
 
-auto dbp = database::createSQLiteDatabase("H:\\Databases",
-                                          "db.sqlite3");
+
 std::unique_ptr<Menu> main_menu;
 
 
@@ -16,12 +15,14 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    auto dbp = database::createSQLiteDatabase("H:\\Databases",
+                                              "db.sqlite3");
+
     layout::darkTheme();
 
-    main_menu = std::unique_ptr<Menu>(new Menu);
+    Login w(dbp);
 
-    Login w(nullptr, dbp.get());
-    dbp->initDb();
+    assert(dbp->initDb());
 
     w.show();
 

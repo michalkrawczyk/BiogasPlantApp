@@ -2,7 +2,7 @@
 #define LOGIN_H
 
 #include <QDialog>
-#include "Database/Inc/db_manager.h"
+#include "Database/Inc/database.h"
 
 namespace Ui {
 class Login;
@@ -13,7 +13,7 @@ class Login : public QDialog
     Q_OBJECT
 
 public:
-    explicit Login(QWidget *parent = nullptr, DbManager *db_ptr = nullptr);
+    explicit Login(DbSQL db_ptr, QWidget *parent = nullptr);
     ~Login();
 
 private slots:
@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::Login *ui;
-    DbManager *m_db_ptr;
+    DbSQL m_db_ptr;
 };
 
 #endif // LOGIN_H

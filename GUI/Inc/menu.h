@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "Database/Inc/database.h"
+#include "GUI/Inc/phone_table.h"
+#include "GUI/Inc/biogas_calculator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Menu; }
@@ -32,6 +34,9 @@ private:
     Ui::Menu *ui;
     unsigned int m_user_id;
     DbSQL m_db_ptr;
+    std::shared_ptr<PhoneTable> m_phone_window_ptr;
+    std::shared_ptr<BiogasCalculator> m_biogas_calc_ptr;
+
 
     void logInUser(const unsigned int &user_id);
 

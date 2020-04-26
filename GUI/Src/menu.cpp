@@ -38,9 +38,23 @@ void Menu::logInUser(const unsigned int &user_id)
     loadCorespondanceAddress();
 }
 
+/**
+ *  Invokes execution of biogas calculator window
+ */
 void Menu::on_pushButton_biogas_calculator_clicked()
 {
+    m_biogas_calc_ptr = std::make_shared<BiogasCalculator>(m_user_id, m_db_ptr);
 
+    m_biogas_calc_ptr->setModal(true);
+
+    this->setDisabled(true);
+
+    QObject::connect(m_biogas_calc_ptr.get(),
+                     &BiogasCalculator::exitSignal,
+                     this,
+                     [this](){this->setDisabled(false); });
+
+    m_biogas_calc_ptr->show();
 }
 
 /**
@@ -274,9 +288,23 @@ void Menu::on_pushButton_edit_address_clicked()
     }
 }
 
+/*
+ *Invokes execution of phone table window
+ *
+*/
 void Menu::on_pushButton_phone_numbers_clicked()
 {
+    m_phone_window_ptr = std::make_shared<PhoneTable>(m_user_id,m_db_ptr);
 
+    m_phone_window_ptr.get()->setModal(true);
+    this->setDisabled(true);
+
+    QObject::connect(m_phone_window_ptr.get(),
+                     &PhoneTable::exitSignal,
+                     this,
+                     [this](){this->setDisabled(false); });
+
+    m_phone_window_ptr->show();
 }
 
 /**

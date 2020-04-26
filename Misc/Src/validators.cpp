@@ -47,7 +47,7 @@ namespace validator{
 
 //        QRegularExpression regex("^[0-9]{9,10}$"); //Poland
 
-        QRegularExpression regex("^\\+?[1-9][0-9]{4,15}$"); //Acording to E.164 Standard
+        QRegularExpression regex("^\\+?[1-9]\\d{3,15}$"); //Acording to E.164 Standard
         return regex.match(phone_number).hasMatch();
     }
 
@@ -93,7 +93,7 @@ namespace validator{
      */
     bool isPositivePercentage(const QVariant &value)
     {
-        return isPositiveDouble(value) && (value.toDouble() < 100);
+        return isPositiveDouble(value) && (value.toDouble() <= 100);
     }
 
     /**

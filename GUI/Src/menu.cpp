@@ -397,3 +397,20 @@ bool Menu::loadPersonalData()
     return false;
 }
 
+
+void Menu::on_pushButton_services_clicked()
+{
+//    m_svcs_ptr.reset(new Services(m_user_id, m_db_ptr));
+    m_svcs_ptr = std::make_shared<Services>(m_user_id, m_db_ptr);
+
+    m_svcs_ptr->setModal(true);
+
+    this->setDisabled(true);
+
+    QObject::connect(m_svcs_ptr.get(),
+                     &Services::exitSignal,
+                     this,
+                     [this](){this->setDisabled(false); });
+
+    m_svcs_ptr->show();
+}

@@ -1,2 +1,5 @@
 Notes.txt
-Prototype.pro
+*.pro
+*.ts
+*.txt
+*.pro.user
